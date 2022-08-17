@@ -33,7 +33,7 @@ class LocationOfDonorsCitesCubit extends Cubit<LocationOfDonorsCitesStates>{
 
 
 
-  getLocationsOfDonationCites() async {
+  getLocationsOfDonorsCites() async {
     try{
 
       emit(GetOfDonorsCitesLoadingState());

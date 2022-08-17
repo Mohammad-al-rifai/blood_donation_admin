@@ -22,7 +22,7 @@ class Home extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('لوحة الاحصائيات'),
       ),
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,9 +72,9 @@ List<String> imageScreens=
   'assets/images/blood.png',
   'assets/images/blood-drop.png',
   'assets/images/sex.png',
-  'assets/images/sex.png',
+  'assets/images/sex2.png',
   'assets/images/age.png',
-  'assets/images/age.png',
+  'assets/images/age2.png',
   'assets/images/architecture-and-city.png',
   'assets/images/placeholder.png',
   'assets/images/placeholder.png',
@@ -115,14 +115,12 @@ Widget buildItem({required int index,context}){
 
 
 Widget buildImage({required String urlImage}) {
-  return  ClipOval(
-    child: Material(
-      color: Colors.transparent,
-      child: Image(
-        image:  AssetImage(urlImage),
-        width: 250.w,
-        height: 270.h,
-      ),
+  return  Material(
+    color: Colors.transparent,
+    child: Image(
+      image:  AssetImage(urlImage),
+      width: 250.w,
+      height: 270.h,
     ),
   );
 }

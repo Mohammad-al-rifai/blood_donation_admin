@@ -29,39 +29,36 @@ class LocationOfDonorsCitesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => LocationOfDonorsCitesCubit()..getLocationsOfDonationCites(),
-      child: BlocConsumer<LocationOfDonorsCitesCubit, LocationOfDonorsCitesStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Google Maps'),
-            ),
-            body: Column(
-              children: [
-                 Expanded(
-                 child: (state is GetOfDonorsCitesSuccessState)?
-                      GoogleMap(
-                       mapType: MapType.normal,
-                       initialCameraPosition: CameraPosition(
-                         target:initialCameraPosition,
-                         zoom: 15.0,
-                       ),
+    return BlocConsumer<LocationOfDonorsCitesCubit, LocationOfDonorsCitesStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('نسبة توزع المتبرعين'),
+          ),
+          body: Column(
+            children: [
+               Expanded(
+               child: (state is GetOfDonorsCitesSuccessState)?
+                    GoogleMap(
+                     mapType: MapType.normal,
+                     initialCameraPosition: CameraPosition(
+                       target:initialCameraPosition,
+                       zoom: 15.0,
+                     ),
 
-                       onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
-                       myLocationEnabled: true,
-                       markers: state.myMarker,
-                     ):const Center(child:CircularProgressIndicator()),
-                   ),
+                     onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
+                     myLocationEnabled: true,
+                     markers: state.myMarker,
+                   ):const Center(child:CircularProgressIndicator()),
+                 ),
 
 
-              ],
+            ],
 
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

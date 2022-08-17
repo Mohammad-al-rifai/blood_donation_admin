@@ -25,45 +25,35 @@ class LocationOfPostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => LocationOfPostsCubit()..getLocationsOfPost(),
-      child: BlocConsumer<LocationOfPostsCubit, LocationOfPostsStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Google Maps'),
-            ),
-            body: Column(
-              children: [
-                 Expanded(
-                 child: (state is GetLocationOfPostSuccessState)?
-                      GoogleMap(
-                       mapType: MapType.normal,
-                       initialCameraPosition: CameraPosition(
-                         target:initialCameraPosition,
-                         zoom: 15.0,
-                       ),
-                       onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
-                       myLocationEnabled: true,
-                       markers: state.myMarker,
-                     ):const Center(child:CircularProgressIndicator()),
-                   ),
+    return BlocConsumer<LocationOfPostsCubit, LocationOfPostsStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('توزيع عمليات التبرع'),
+          ),
+          body: Column(
+            children: [
+               Expanded(
+               child: (state is GetLocationOfPostSuccessState)?
+                    GoogleMap(
+                     mapType: MapType.normal,
+                     initialCameraPosition: CameraPosition(
+                       target:initialCameraPosition,
+                       zoom: 15.0,
+                     ),
+                     onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
+                     myLocationEnabled: true,
+                     markers: state.myMarker,
+                   ):const Center(child:CircularProgressIndicator()),
+                 ),
 
 
-              ],/*GoogleMap(
-                        mapType: MapType.normal,
-                        initialCameraPosition: CameraPosition(
-                            target: initialCameraPosition, zoom: 15.0),
-                        onMapCreated: cubit.onMapCreated,
-                        myLocationEnabled: true,
-                        markers: cubit.myMarker,
-                      ),*/
+            ],
 
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

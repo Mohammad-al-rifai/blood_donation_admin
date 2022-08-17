@@ -19,6 +19,8 @@ import 'cubit/completed_post/completed_post_cubit.dart';
 import 'cubit/gender_ratio_donate/gender_ratio_donate_cubit.dart';
 import 'cubit/gender_ratio_donors/gender_ratio_donors_cubit.dart';
 import 'cubit/get_all_tokens/get_all_tokens_cubit.dart';
+import 'cubit/location_of_Donat_cites/location_donation_cites_cubit.dart';
+import 'cubit/location_of_Donors_cites/location_donors_cites_cubit.dart';
 import 'cubit/location_of_post/location_of_post_cubit.dart';
 import 'dashbordes/screen_location_of_post.dart';
 import 'shared/bloc_observer.dart';
@@ -92,21 +94,35 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return
-           MaterialApp(
-            debugShowCheckedModeBanner: false,
-            //Use this line to prevent extra rebuilds
-            useInheritedMediaQuery: true,
-            //You can use the library anywhere in the app even in theme
-            theme: ThemeData(
-              iconTheme: const IconThemeData(
-                color: Colors.black,
-                opacity: 1,
+          MultiBlocProvider(
+
+             providers: [
+               BlocProvider(
+                 create: (context) => LocationOfDonationCitesCubit()..getLocationsOfDonationCites(),
+               ),
+               BlocProvider(
+                 create: (context) => LocationOfDonorsCitesCubit()..getLocationsOfDonorsCites(),
+               ),
+               BlocProvider(
+                 create: (context) => LocationOfPostsCubit()..getLocationsOfPost(),
+               ),
+             ],
+             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              //Use this line to prevent extra rebuilds
+              useInheritedMediaQuery: true,
+              //You can use the library anywhere in the app even in theme
+              theme: ThemeData(
+                iconTheme: const IconThemeData(
+                  color: Colors.black,
+                  opacity: 1,
+                ),
+                primarySwatch: Colors.red,
+                textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
               ),
-              primarySwatch: Colors.red,
-              textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
-            ),
-            home:Home(),
-          );
+              home:Home(),
+          ),
+           );
 
 
 

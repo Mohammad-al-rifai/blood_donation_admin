@@ -27,39 +27,36 @@ class LocationOfDonationCitesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => LocationOfDonationCitesCubit()..getLocationsOfDonationCites(),
-      child: BlocConsumer<LocationOfDonationCitesCubit, LocationOfDonationCitesStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Google Maps'),
-            ),
-            body: Column(
-              children: [
-                 Expanded(
-                 child: (state is GetOfDonationCitesSuccessState)?
-                      GoogleMap(
-                       mapType: MapType.normal,
-                       initialCameraPosition: CameraPosition(
-                         target:initialCameraPosition,
-                         zoom: 15.0,
-                       ),
+    return BlocConsumer<LocationOfDonationCitesCubit, LocationOfDonationCitesStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('نسبة توزيع المتبرع لهم'),
+          ),
+          body: Column(
+            children: [
+               Expanded(
+               child: (state is GetOfDonationCitesSuccessState)?
+                    GoogleMap(
+                     mapType: MapType.normal,
+                     initialCameraPosition: CameraPosition(
+                       target:initialCameraPosition,
+                       zoom: 15.0,
+                     ),
 
-                       onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
-                       myLocationEnabled: true,
-                       markers: state.myMarker,
-                     ):const Center(child:CircularProgressIndicator()),
-                   ),
+                     onMapCreated: LocationOfPostsCubit.get(context).onMapCreated,
+                     myLocationEnabled: true,
+                     markers: state.myMarker,
+                   ):const Center(child:CircularProgressIndicator()),
+                 ),
 
 
-              ],
+            ],
 
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
