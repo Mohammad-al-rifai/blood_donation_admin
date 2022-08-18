@@ -2,15 +2,13 @@
 
 A new Flutter project.
 
-## Getting Started
+## Statistics directed to the application manager
 
-This project is a starting point for a Flutter application.
+This application calculates the following statistics:
+Most demanded age
+The sex that demands the most blood
+Geographical distribution of blood donors
+Cities most demanded for blood
+The most generous cities with blood
+The most requested blood groups...
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
